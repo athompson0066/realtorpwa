@@ -3,12 +3,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, ReactNode } from 'react';
 import Markdown from 'react-markdown';
 import { Send, User, Bot, LayoutGrid, Link as LucideLink, Trash2, Plus, Minus, Globe, MessageCircle, Phone, Mail } from 'lucide-react';
 
 
-const Accordion = ({ title, content }: { title: string, content: string }) => {
+const Accordion = ({ title, content }: { title: string, content: ReactNode }) => {
     const [isOpen, setIsOpen] = useState(false);
     return (
       <div className="border border-gray-200 rounded-lg mb-2 bg-white shadow-sm">
@@ -90,12 +90,14 @@ const toHtmlCard = (listing: any) => {
 const toHtmlGreeting = () => `
     <div style="font-family: sans-serif; max-width: 450px; background: #ffffff; border-radius: 16px; border: 1px solid #efefef; box-shadow: 0 10px 15px rgba(0,0,0,0.1); overflow: hidden; padding: 20px;">
         <div style="display: flex; align-items: center; margin-bottom: 15px;">
-            <div style="width: 40px; height: 40px; background: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 12px;">S</div>
-            <h2 style="margin: 0; font-size: 18px;">Sade Assistant</h2>
+            <div style="width: 40px; height: 40px; background: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 12px;">M</div>
+            <div>
+                <h2 style="margin: 0; font-size: 18px;">Maya</h2>
+                <div style="font-size: 12px; color: #666;">Real Estate AI Assistant</div>
+            </div>
         </div>
         <p style="color: #4b5563; line-height: 1.5; font-size: 15px; margin-bottom: 15px;">
-            Hello! I’m Sade. I can find the best verified Toronto professionals for you. <br><br>
-            <b>What neighborhood or service (Plumbing, Remodeling, etc.) are you looking for?</b>
+            Looking to buy or sell in the GTA? I'm Maya, your dedicated real estate AI assistant for Paul Mckennon. Ask me anything to get started—I’m here to help!
         </p>
         <div style="font-size: 12px; color: #9ca3af; text-transform: uppercase; font-weight: bold;">Toronto Citypages • Real-Time Search</div>
     </div>
@@ -200,24 +202,24 @@ export default function App() {
         </button>
         <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden">
           <img 
-            src="https://orlandosydney.com/wp-content/uploads/2023/05/Female-Professional-Headshot.-LinkedIn-Business-Profile.-By-Orlandosydney.com-202300752.jpg"
+            src="https://cdn.realtor.ca/individuals/TS638851689600000000/highres/1054816.jpg"
             alt="Profile"
             className="w-full h-full object-cover"
           />
         </div>
-        <h1 className="text-2xl font-bold">Business Navigator</h1>
-        <p className="text-gray-500">Discover top-rated services.</p>
+        <h1 className="text-2xl font-bold">Paul Mckennon</h1>
+        <p className="text-gray-500">Discover top rated real estate services</p>
         <div className="flex justify-center gap-4 mt-3 text-gray-400">
-          <Globe className="w-5 h-5" />
-          <MessageCircle className="w-5 h-5" />
-          <Phone className="w-5 h-5" />
-          <Mail className="w-5 h-5" />
+          <a href="https://paulmckennons.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors"><Globe className="w-5 h-5" /></a>
+          <a href="sms:4165677253" className="hover:text-green-500 transition-colors"><MessageCircle className="w-5 h-5" /></a>
+          <a href="tel:4165677253" className="hover:text-sky-500 transition-colors"><Phone className="w-5 h-5" /></a>
+          <a href="mailto:567sale@gmail.com" className="hover:text-red-500 transition-colors"><Mail className="w-5 h-5" /></a>
         </div>
       </header>
 
       <div className="w-full max-w-md flex-grow flex flex-col gap-4">
         <div className="bg-white p-4 rounded-2xl shadow-sm flex items-center justify-between">
-          <span className="font-semibold">Company Name</span>
+          <span className="font-semibold">Remax Realtron</span>
           <LayoutGrid className="text-gray-400" />
         </div>
 
@@ -250,9 +252,24 @@ export default function App() {
           </button>
         </div>
         <div className="mt-4">
-          <Accordion title="Get Your Free Home Valuation" content="Find out what your property is worth in the current market with a complimentary, no-obligation home valuation report." />
-          <Accordion title="View Our Latest Listings" content="Browse our exclusive selection of properties across Toronto. Click here to see homes that match your criteria." />
-          <Accordion title="Schedule an Expert Consultation" content="Ready to buy or sell? Let's discuss your real estate goals. Book a private consultation with our team today." />
+          <Accordion title="Get Your Free Home Valuation" content={
+            <div className="flex flex-col gap-2">
+                <p>Find out what your property is worth in the current market with a complimentary, no-obligation home valuation report.</p>
+                <button className="bg-blue-600 text-white rounded px-3 py-1 text-xs self-start hover:bg-blue-700">Learn More</button>
+            </div>
+          } />
+          <Accordion title="View Our Latest Listings" content={
+            <div className="flex flex-col gap-2">
+                <p>Browse our exclusive selection of properties across Toronto. Click here to see homes that match your criteria.</p>
+                <button className="bg-blue-600 text-white rounded px-3 py-1 text-xs self-start hover:bg-blue-700">Learn More</button>
+            </div>
+          } />
+          <Accordion title="Schedule an Expert Consultation" content={
+            <div className="flex flex-col gap-2">
+                <p>Ready to buy or sell? Let's discuss your real estate goals. Book a private consultation with our team today.</p>
+                <button className="bg-blue-600 text-white rounded px-3 py-1 text-xs self-start hover:bg-blue-700">Learn More</button>
+            </div>
+          } />
         </div>
         <div className="mt-6">
           <h3 className="font-semibold text-gray-800 mb-2">Exclusive Resources</h3>
@@ -260,10 +277,10 @@ export default function App() {
           <LeadMagnet title="Move-In Ready Checklist" description="A comprehensive checklist to ensure a stress-free transition into your new dream home." buttonText="Get Checklist" />
         </div>
         <footer className="mt-8 pt-8 pb-8 px-4 rounded-b-2xl bg-gradient-to-r from-blue-50 to-indigo-100 border-t border-blue-200 flex justify-center gap-8 text-gray-500">
-          <a href="#" className="hover:text-blue-600 transition-all transform hover:scale-110"><Globe className="w-7 h-7" /></a>
-          <a href="#" className="hover:text-green-600 transition-all transform hover:scale-110"><MessageCircle className="w-7 h-7" /></a>
-          <a href="#" className="hover:text-sky-600 transition-all transform hover:scale-110"><Phone className="w-7 h-7" /></a>
-          <a href="#" className="hover:text-red-600 transition-all transform hover:scale-110"><Mail className="w-7 h-7" /></a>
+          <a href="https://paulmckennons.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-all transform hover:scale-110"><Globe className="w-7 h-7" /></a>
+          <a href="sms:4165677253" className="hover:text-green-600 transition-all transform hover:scale-110"><MessageCircle className="w-7 h-7" /></a>
+          <a href="tel:4165677253" className="hover:text-sky-600 transition-all transform hover:scale-110"><Phone className="w-7 h-7" /></a>
+          <a href="mailto:567sale@gmail.com" className="hover:text-red-600 transition-all transform hover:scale-110"><Mail className="w-7 h-7" /></a>
         </footer>
       </div>
     </div>
